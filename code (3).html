@@ -1,0 +1,747 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HeyAssist - Your Trusted Virtual Assistant & Business Support Partner</title>
+    <style>
+        /* Global Styles - Modern Minimalist Design */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        /* Background video styling */
+        #bg-video {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: -2;
+            pointer-events: none;
+        }
+
+        /* Optional overlay for text clarity */
+        .video-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(10, 20, 40, 0.55); /* dark blue transparent overlay */
+            z-index: -1;
+        }
+
+                /* Body padding-top to make space for fixed header */
+        body {
+            font-family: 'Times New Roman', serif;
+            color: #ffffff;
+            line-height: 1.7;
+            overflow-x: hidden;
+            padding-top: 76px; /* matches header height so content doesn't hide under nav */
+        }
+
+         nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background: rgba(0, 40, 100, 0.85); /* dark blue transparent */
+            backdrop-filter: blur(12px);
+            padding: 0.9rem 0; /* vertical spacing in header */
+            z-index: 1100;
+            transition: all 0.25s ease;
+            border-bottom: 1px solid rgba(0, 191, 255, 0.15);
+            box-shadow: 0 6px 18px rgba(0, 0, 0, 0.45);
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 1.8rem; /* spacing between menu items */
+            margin: 0 auto;
+            padding: 0 1rem;
+            max-width: 1150px;
+        }
+
+        nav li { margin: 0; padding: 0; }
+
+        nav a {
+            color: #ffffff;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.95rem;
+            text-transform: uppercase;
+            letter-spacing: 0.85px;
+            position: relative;
+            padding: 0.45rem 0; /* gives vertical clickable area */
+            transition: color 0.22s ease, transform 0.22s ease;
+        }
+
+        nav a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -6px;
+            left: 50%;
+            background: #00BFFF;
+            transition: width 0.22s ease, transform 0.22s ease;
+            transform: translateX(-50%);
+        }
+
+        nav a:hover {
+            color: #00BFFF;
+            transform: translateY(-2px);
+        }
+
+        nav a:hover::after { width: 100%; }
+
+        /* Page Titles - Subtle Wave Animation */
+        .page-title {
+            text-align: center;
+            font-size: 4.5rem;
+            margin: 3rem 0 2rem;
+            background: linear-gradient(45deg, #ffffff, #00BFFF, #ffffff);
+            background-size: 200% 200%;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: waveShift 2s ease-in-out infinite;
+            font-weight: 300;
+        }
+
+        @keyframes waveShift {
+            0%, 100% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+        }
+
+        /* Sections - Clean Card Layout */
+        section {
+            min-height: 100vh;
+            padding: 6rem 3rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            position: relative;
+        }
+
+        .content-card {
+            background: rgba(255, 255, 255, 0.05); /* Subtle glassmorphism effect */
+            backdrop-filter: blur(5px);
+            border: 1px solid rgba(0, 191, 255, 0.3); /* Cyan border */
+            border-radius: 20px;
+            padding: 4rem;
+            margin: 2rem auto;
+            max-width: 900px;
+            box-shadow: 0 8px 32px rgba(0, 191, 255, 0.1); /* Soft cyan glow */
+            transition: all 0.4s ease;
+        }
+
+        .content-card:hover {
+            transform: scale(1.02);
+            box-shadow: 0 12px 40px rgba(0, 191, 255, 0.2);
+            border-color: rgba(0, 191, 255, 0.6);
+        }
+
+        /* Buttons - Cyan and White Gradient */
+        .btn {
+            display: inline-block;
+            background: linear-gradient(45deg, #00BFFF, #ffffff);
+            color: #0f0f23;
+            padding: 1.2rem 2.5rem;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 600;
+            margin: 1.5rem;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            box-shadow: 0 4px 15px rgba(0, 191, 255, 0.3);
+        }
+
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(0, 191, 255, 0.4);
+            background: linear-gradient(45deg, #ffffff, #00BFFF);
+            color: #ffffff;
+        }
+
+        /* Lists and Subsections - Elegant Bullets */
+        ul {
+            list-style: none;
+            padding: 0;
+            text-align: left;
+        }
+
+        ul li {
+            margin: 0rem ;
+            padding: 0rem;
+            transition: background 0.3s ease;
+        }
+
+        ul li:hover {
+            background: rgba(0, 191, 255, 0.2);
+        }
+
+        h2, h3 {
+            color: #00BFFF; /* Cyan headings */
+            margin-bottom: 0rem;
+            font-weight: 400;
+        }
+
+        /* Portfolio and Companies - Masonry Grid for Dynamic Feel */
+        .portfolio-grid, .companies-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+            margin: 2rem 0;
+            width: 100%;
+        }
+
+        .portfolio-item, .company-item {
+            background: rgba(255, 255, 255, 0.03);
+            padding: 2rem;
+            border-radius: 15px;
+            border: 1px solid rgba(0, 191, 255, 0.2);
+            transition: all 0.3s ease;
+            text-align: left;
+        }
+
+        .portfolio-item:hover, .company-item:hover {
+            transform: translateY(-5px);
+            border-color: #00BFFF;
+            box-shadow: 0 5px 20px rgba(0, 191, 255, 0.15);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .page-title {
+                font-size: 2.5rem;
+            }
+            .content-card {
+                padding: 2.5rem 1.5rem;
+                margin: 1rem;
+            }
+            nav ul {
+                flex-direction: column;
+                align-items: center;
+                gap: 1rem;
+            }
+            nav li {
+                margin: 0;
+            }
+            section {
+                padding: 4rem 1.5rem;
+            }
+        }
+
+        /* Smooth Scrolling */
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* Enhanced Collaborative Modal - With Form Simulation */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 2000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(15, 15, 35, 0.9);
+            backdrop-filter: blur(10px);
+        }
+
+        .modal-content {
+            background: rgba(255, 255, 255, 0.1);
+            margin: 10% auto;
+            padding: 3rem;
+            border: 1px solid rgba(0, 191, 255, 0.5);
+            width: 90%;
+            max-width: 600px;
+            border-radius: 20px;
+            text-align: center;
+            backdrop-filter: blur(10px);
+        }
+
+        .close {
+            color: #ffffff;
+            float: right;
+            font-size: 32px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: color 0.3s ease;
+        }
+
+        .close:hover {
+            color: #00BFFF;
+        }
+
+        .modal form {
+            margin-top: 2rem;
+            text-align: left;
+        }
+
+        .modal input, .modal textarea {
+            width: 100%;
+            padding: 1rem;
+            margin: 1rem 0;
+            border: 1px solid rgba(0, 191, 255, 0.5);
+            border-radius: 10px;
+            background: rgba(255, 255, 255, 0.1);
+            color: #ffffff;
+        }
+
+        /* Expert Shortcuts Panel - Floating Sidebar Hint */
+        .shortcuts-panel {
+            position: fixed;
+            bottom: 20px;
+            left: 20px;
+            background: rgba(0, 191, 255, 0.1);
+            color: #ffffff;
+            padding: 1.5rem;
+            border-radius: 15px;
+            font-size: 0.9rem;
+            border: 1px solid #00BFFF;
+            opacity: 0.8;
+            transition: opacity 0.3s ease, transform 0.3s ease;
+            max-width: 250px;
+        }
+
+        .shortcuts-panel:hover {
+            opacity: 1;
+            transform: scale(1.05);
+        }
+
+        /* Parallax Effect on Sections (Subtle) */
+        section {
+            background-attachment: fixed;
+        }
+        footer:hover {
+            background: linear-gradient(45deg, rgba(0, 191, 255, 0.3), rgba(15, 15, 35, 0.9));
+            transition: background 0.3s ease;
+        }
+        /*#home{
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 90vh;
+            background: radial-gradient(circle at top, #081a2f, #000);
+            color: white;
+            text-align: center;
+        }*/
+        #services{
+            padding: 0px;
+        }
+
+        /* Footer */
+        footer {
+            background-color: #16213e;
+            color: #fff;
+            text-align: center;
+            padding: 2rem;
+            margin-top: 5rem;
+        }
+
+    </style>
+</head>
+<body>
+
+
+    <!-- 🎬 Background Video -->
+    <video autoplay muted loop playsinline id="bg-video">
+        <source src="LIVE BG1.MP4" type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
+    <div class="video-overlay"></div>
+
+    <!-- Navigation -->
+    <nav>
+        <ul>
+            <li><a href="#home">Home</a></li>
+            <li><a href="#about">About Me</a></li>
+            <li><a href="#services">Services</a></li>
+            <li><a href="#portfolio">Portfolio</a></li>
+            <li><a href="#companies">Companies</a></li>
+            <li><a href="#performance">Performance</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+    </nav>
+
+    <!-- Your other sections remain unchanged -->
+    <!-- ... all your sections here (Home, About, Services, Portfolio, Companies, etc.) ... -->
+
+    <!-- Home Section -->
+    <section id="home">
+        <h1 class="page-title" style="font-family: Times New Roman, cursive;"><b>HeyAssist</b></h1>
+        <div class="content-card">
+            <p><em>"Your Trusted Virtual Assistant & Business Support Partner Serving clients locally and internationally"</em></p>
+            <h2>Hi, I’m Mj</h2>
+            <p>A Virtual Assistant, Quality Specialist, and CAD Drafter based in <strong>Carigara, Leyte</strong>.</p>
+            <p>I help businesses stay <strong>organized, accurate, and efficient</strong> through professional virtual support, documentation, and drafting services. My goal is to make your daily operations smoother so you can focus on growth and success.</p>
+            <a href="#portfolio" class="btn" onclick="openModal('Explore My Work - Portfolio Samples')">Let’s Work Together! View My Work</a>
+        </div>
+    </section>
+
+    <!-- About Me Section -->
+    <section id="about">
+        <h1 class="page-title">About Me</h1>
+        <div class="content-card">
+            <p>I started my career as a <strong>Virtual Assistant</strong>, handling administrative tasks such as data entry, document organization, and scheduling. With hands-on experience in <strong>coaxial cabling and CAD drafting</strong>, I’ve built strong technical and quality control skills that ensure precision and consistency in every project.</p>
+            <p>I’m passionate about <strong>combining technology, organization, and accuracy</strong> to deliver excellent results. I value reliability, clear communication, and teamwork which is I believe is the key ingredients of successful collaborations.</p>
+            <p><strong>📍 Based in Carigara, Leyte : serving clients locally and internationally.</strong></p>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services">
+        <h1 class="page-title">Services</h1>
+        <div class="content-card">
+            <h3>🔹 Virtual Assistant Services</h3>
+            <ul>
+                <li>Data entry & document management</li>
+                <li>Online scheduling & email handling</li>
+                <li>Invoicing and billing assistance</li>
+            </ul>
+
+            <h3>🔹 CAD Drafting Services</h3>
+            <ul>
+                <li><strong>Coaxial Drafting</strong> – creation and revision of coaxial layout drawings</li>
+                <li><strong>CAD Permitting</strong> – preparing and formatting drawings for project permit approvals</li>
+                <li><strong>CAD Drafting</strong> – general drafting support for design and as-built plans</li>
+            </ul>
+
+            <h3 style="margin-top: 15px">🔹 Quality Control Services (Coaxial Projects)</h3>
+            <ul>
+                <li><strong>Coaxial Cabling Quality Checking</strong> – reviewing design accuracy and data consistency</li>
+                <li><strong>Coax Cable Route / Connection Verifying and Checking</strong> – ensuring cable routes and connections are correctly represented and comply with project standards</li>
+            </ul>
+
+            <h3 style="margin-top: 15px">🔹 Research & Writing Projects</h3>
+            <ul>
+                <li>Research summaries and reports</li>
+                <li>Proposal and academic writing</li>
+                <li>Business or documentation content creation</li>
+            </ul>
+        </div>
+    </section>
+
+    <!-- Portfolio Section -->
+    <!--<section id="portfolio">
+            <h1 class="page-title">Portfolio</h1>
+            <div class="content-card">
+                <p>Here are some examples of my work and completed projects:</p>
+                <div class="portfolio-grid">
+                    <div class="portfolio-item">
+                        <h3> AutoCAD Drawings</h3>
+                        <p>Sample coaxial layouts and as-built revisions.</p>
+                    </div>
+                    <div class="portfolio-item">
+                        <h3> Document Tracker Samples</h3>
+                        <p>Organized data sheets and report templates.</p>
+                    </div>
+                    <div class="portfolio-item">
+                        <h3> Research & Writing Projects</h3>
+                        <p>Documentation and report writing samples.</p>
+                    </div>
+                </div>
+            </div>
+        </section>-->
+<section id="portfolio">
+    <h1 class="page-title">Portfolio</h1>
+    <div class="content-card">
+        <p>Here are some examples of my work and completed projects:</p>
+        <div class="portfolio-grid">
+
+            <!-- AutoCAD Drawings -->
+            <div class="portfolio-item">
+                <h3>AutoCAD Drawings</h3>
+                <p>Sample coaxial layouts and as-built revisions.</p>
+                <div class="carousel">
+                    <img src="1ST DRAFT.PNG" alt="1ST DRAFT">
+                    <img src="2ND DRAFT.PNG" alt="2ND DRAFT">
+                    <img src="3RD DRAFT.PNG" alt="3RD DRAFT">
+                    <img src="1ST PERMIT.PNG" alt="1ST PERMIT">
+                    <img src="2ND PERMIT.PNG" alt="2ND PERMIT">
+                    <img src="QUALITY.PNG" alt="QUALITY">
+                </div>
+            </div>
+
+            <!-- Document Tracker Samples -->
+            <div class="portfolio-item">
+                <h3>Document Tracker Samples</h3>
+                <p>Organized data sheets and report templates.</p>
+                <div class="carousel">
+                    <img src="DATA ENTRY FOR PRODUCTION.PNG" alt="Data Entry">
+                    <img src="INVOICING & BILLING.PNG" alt="Invoicing & Billing">
+                    <img src="SCHEDULING.PNG" alt="Scheduling">
+                </div>
+            </div>
+
+            <!-- Research & Writing Projects -->
+            <div class="portfolio-item">
+                <h3>Research & Writing Projects</h3>
+                <p>Documentation and report writing samples.</p>
+                <div class="carousel">
+                    <img src="PAPER WORKS.AVIF" alt="Paper Works">
+                    <img src="RESEARCH.JPG" alt="Research">
+                    <img src="COMP.JPG" alt="COMP">
+                    <img src="COMP1.JPG" alt="COMP1">
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- Modal -->
+    <div id="imageModal" class="modal">
+        <span class="close">&times;</span>
+        <img class="modal-content" id="modalImage">
+    </div>
+
+    <style>
+        .portfolio-grid {
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+        }
+
+        .portfolio-item {
+            padding: 20px;
+            border-radius: 15px;
+            /* No white background, transparent */
+            background: transparent;
+        }
+
+        .carousel {
+            display: flex;
+            gap: 10px;
+            overflow-x: auto;
+            padding: 10px 0;
+        }
+
+        .carousel img {
+            height: 150px;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: transform 0.2s, box-shadow 0.2s;
+            /* Add subtle shadow to images */
+            box-shadow: 0 3px 10px rgba(0,0,0,0.2);
+        }
+
+        .carousel img:hover {
+            transform: scale(1.05);
+            box-shadow: 0 6px 20px rgba(0,0,0,0.3);
+        }
+
+        /* Modal Styles */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.7);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .modal-content {
+            max-width: 70%;
+            max-height: 70%;
+            border: 5px solid #3498db; /* Blue border */
+            border-radius: 15px;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.5);
+            object-fit: contain;
+            transition: transform 0.3s;
+        }
+
+        .close {
+            position: absolute;
+            top: 20px;
+            right: 35px;
+            color: #fff;
+            font-size: 35px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        @media screen and (max-width: 768px) {
+            .carousel img {
+                height: 120px;
+            }
+
+            .modal-content {
+                max-width: 90%;
+                max-height: 60%;
+            }
+        }
+    </style>
+
+    <script>
+        const modal = document.getElementById("imageModal");
+        const modalImg = document.getElementById("modalImage");
+        const closeBtn = document.getElementsByClassName("close")[0];
+
+        document.querySelectorAll('.carousel img').forEach(img => {
+            img.onclick = function() {
+                modal.style.display = "flex";
+                modalImg.src = this.src;
+            }
+        });
+
+        closeBtn.onclick = function() {
+            modal.style.display = "none";
+        }
+
+        modal.onclick = function(e) {
+            if(e.target === modal) {
+                modal.style.display = "none";
+            }
+        }
+    </script>
+</section>
+
+    <!-- Companies Section -->
+    <section id="companies">
+        <h1 class="page-title">Companies I’ve Worked With</h1>
+        <div class="content-card">
+            <p>I’ve successfully contributed to coaxial cable projects under the following companies, consistently completing each task with outstanding performance.</p>
+            <div class="companies-grid">
+                <div class="company-item">
+                    <strong style="color:#00BFFF ;">• TACC</strong><br>
+                    Achieved 100% submission accuracy and on-time completion, ensuring all coax routes were properly documented and verified.
+                </div>
+                <div class="company-item">
+                    <strong style="color:#00BFFF ;">• ITG Walkout</strong><br>
+                    Delivered detailed CAD layouts and field coordination support that improved project turnaround efficiency.
+                </div>
+                <div class="company-item">
+                    <strong style="color:#00BFFF ;">• Charter Walkout</strong><br>
+                    Recognized for excellent attention to route verification and consistent compliance with design standards.
+                </div>
+                <div class="company-item">
+                    <strong style="color:#00BFFF ;">• CommScope Walkout</strong><br>
+                    Maintained high QA scores through thorough coax connection and path inspections, ensuring zero reworks.
+                </div>
+                <div class="company-item">
+                    <strong style="color:#00BFFF ;">• RDMS</strong><br>
+                    Supported seamless project updates and quality control by verifying coax data integrity and coordinating effective revisions.
+                </div>
+            </div>
+            <!--<p>Each of these collaborations strengthened my expertise in CAD permitting, coaxial drafting, and quality checking, helping project teams maintain top-tier standards across all deliverables.</p>-->
+        </div>
+    </section>
+
+    <!-- Performance & Collaboration Section -->
+    <section id="performance">
+        <h1 class="page-title">Performance & Collaboration</h1>
+        <div class="content-card">
+            <h3>My Performance</h3>
+            <p>Throughout my career, I’ve consistently delivered <strong>accurate, organized, and timely outputs</strong>. I focus on clear communication, strong attention to detail, and adaptability to ensure every project meets the highest standards.</p>
+
+            <h3>How I Elevate Work</h3>
+            <p>I aim to make every process smoother by introducing structure, accuracy, and efficiency. My approach helps reduce workload stress and enhances productivity — allowing clients to focus on what really matters.</p>
+
+            <h3>Let’s Collaborate</h3>
+            <p>I’m open to working with professionals and businesses who value <strong>reliability, teamwork, and quality results</strong>. Let’s work together to achieve your business goals.</p>
+            <a href="#contact" class="btn" onclick="openModal('Initiate Collaboration - Share Your Project')">Start Collaborating with Me</a>
+        </div>
+    </section>
+
+                <!-- Contact Section -->
+    <section id="contact" style="display: flex; justify-content: center; align-items: center; min-height: 90vh; color: white; padding: 40px;">
+      <div style="background: rgba(255, 255, 255, 0.05); border: 1px solid rgba(0, 191, 255, 0.3); border-radius: 20px; padding: 40px; width: 100%; max-width: 500px; box-shadow: 0 0 25px rgba(0, 191, 255, 0.2); backdrop-filter: blur(10px);">
+        <h2 style="text-align: center; font-size: 1.8rem; margin-bottom: 25px; color: #00bfff;">📩 Send a Message</h2>
+
+        <!-- Replace the 'YOUR_FORM_ID' with your actual Formspree form ID -->
+        <form action="https://formspree.io/f/mdkwwabr" method="POST">
+          <div style="margin-bottom: 20px;">
+            <label for="name" style="display: block; margin-bottom: 8px;">Your Name</label>
+            <input type="text" id="name" name="name" placeholder="Enter your full name" required
+              style="width: 100%; padding: 12px; border-radius: 10px; border: 1px solid rgba(0,191,255,0.3); background: rgba(255,255,255,0.08); color: white; outline: none;">
+          </div>
+
+          <div style="margin-bottom: 20px;">
+            <label for="email" style="display: block; margin-bottom: 8px;">Your Email</label>
+            <input type="email" id="email" name="email" placeholder="Enter your email address" required
+              style="width: 100%; padding: 12px; border-radius: 10px; border: 1px solid rgba(0,191,255,0.3); background: rgba(255,255,255,0.08); color: white; outline: none;">
+          </div>
+
+          <div style="margin-bottom: 20px;">
+            <label for="service" style="display: block; margin-bottom: 8px;">Service You Want to Avail</label>
+            <input type="text" id="service" name="service" placeholder="Ex. CAD Drafting, Coaxial QC..." 
+              style="width: 100%; padding: 12px; border-radius: 10px; border: 1px solid rgba(0,191,255,0.3); background: rgba(255,255,255,0.08); color: white; outline: none;">
+          </div>
+
+          <div style="margin-bottom: 25px;">
+            <label for="message" style="display: block; margin-bottom: 8px;">Your Message or Project Details</label>
+            <textarea id="message" name="message" rows="5" placeholder="Describe your project or request..." required
+              style="width: 100%; padding: 12px; border-radius: 10px; border: 1px solid rgba(0,191,255,0.3); background: rgba(255,255,255,0.08); color: white; resize: none; outline: none;"></textarea>
+          </div>
+
+          <button type="submit"
+            style="width: 100%; padding: 14px; border: none; border-radius: 10px; background: linear-gradient(45deg, #00bfff, #0077ff); color: white; font-weight: bold; cursor: pointer; letter-spacing: 0.5px; transition: 0.3s;">
+            Send Message
+          </button>
+        </form>
+
+        <p id="status" style="text-align: center; margin-top: 15px; color: #00bfff;"></p>
+      </div>
+
+      <script>
+        const form = document.querySelector("form");
+        const status = document.getElementById("status");
+
+        form.addEventListener("submit", async (e) => {
+          e.preventDefault();
+          const data = new FormData(form);
+          const action = e.target.action;
+          status.textContent = "Sending...";
+          const response = await fetch(action, {
+            method: form.method,
+            body: data,
+            headers: { Accept: "application/json" },
+          });
+          if (response.ok) {
+            status.textContent = "✅ Message sent successfully!";
+            form.reset();
+          } else {
+            status.textContent = "❌ Oops! Something went wrong. Please try again.";
+          }
+        });
+      </script>
+    </section>
+
+
+
+    <script>
+document.getElementById("contact-form").addEventListener("submit", function(event){
+    event.preventDefault();
+    alert("Thank you for reaching out! Your message has been sent successfully.");
+    this.reset();
+});
+
+</script>
+
+<!-- ===== Footer ===== -->
+  <footer>
+<div class="container">
+<p>&copy; 2024 HeyAssist | Empowering businesses through reliable Virtual Assistance. </p>
+</div>
+</footer>
+</body>
+
+
