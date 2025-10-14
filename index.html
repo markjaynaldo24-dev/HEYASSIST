@@ -800,19 +800,70 @@ document.getElementById("contact-form").addEventListener("submit", function(even
         if (e.target === modal) modal.style.display = 'none';
     });
 
-</script>
-
-<!-- ===== Footer ===== -->
-<footer>
-  <p>&copy; 2025 HeyAssist | Your Trusted Virtual Assistant.</p>
-
-  <div class="footer-right">
-    <div class="social-links">
-      <a href="mailto:markjaynaldo24@gmail.com">Email</a>
-      <a href="https://www.facebook.com/share/19vtXpwp2K/?mibextid=wwXIfr" target="_blank">Facebook</a>
-      <a href="https://wa.me/639685500139" target="_blank">WhatsApp</a>
-    </div>
-    <a href="https://wa.me/639685500139" target="_blank" class="whatsapp-btn">
+    </script>
+    
+    <!-- ===== Footer ===== -->
+    <footer>
+      <div class="footer-container">
+        <div class="footer-left">
+          &copy; 2025 HeyAssist | All Rights Reserved
+        </div>
+        <div class="footer-right">
+          <a href="mailto:markjaynaldo24@gmail.com">Email</a>
+          <a href="https://www.facebook.com/share/19vtXpwp2K/?mibextid=wwXIfr" target="_blank">Facebook</a>
+          <a href="https://wa.me/639685500139" target="_blank">WhatsApp</a>
+        </div>
+      </div>
+    </footer>
+    
+    <style>
+    footer {
+        background-color: #16213e;
+        color: #fff;
+        padding: 1rem 2rem;
+    }
+    
+    .footer-container {
+        display: flex;
+        justify-content: space-between; /* text left, links right */
+        align-items: center; /* vertical alignment */
+        flex-wrap: wrap; /* allow wrapping on smaller screens */
+    }
+    
+    .footer-left {
+        font-weight: 500;
+    }
+    
+    .footer-right a {
+        color: #00bfff;
+        font-weight: 600;
+        text-decoration: none;
+        border: 1px solid rgba(0, 191, 255, 0.3);
+        padding: 8px 14px;
+        border-radius: 10px;
+        margin-left: 10px;
+        transition: all 0.3s ease;
+    }
+    
+    .footer-right a:hover {
+        background: #00bfff;
+        color: #fff;
+        transform: scale(1.1);
+        box-shadow: 0 0 15px rgba(0, 191, 255, 0.4);
+    }
+    
+    /* Responsive: stack on mobile */
+    @media (max-width: 600px) {
+        .footer-container {
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 10px;
+        }
+        .footer-right a {
+            margin-left: 0;
+        }
+    }
+    </style>
     </a>
 </div>
 </footer>
