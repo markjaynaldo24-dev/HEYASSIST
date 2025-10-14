@@ -352,6 +352,49 @@
             margin-top: 5rem;
         }
 
+            footer .social-links {
+          margin-top: 15px;
+          display: flex;
+          justify-content: center;
+          gap: 20px;
+        }
+
+        footer .social-links a {
+          color: #00bfff;
+          font-weight: 600;
+          text-decoration: none;
+          border: 1px solid rgba(0, 191, 255, 0.3);
+          padding: 8px 14px;
+          border-radius: 10px;
+          transition: all 0.3s ease;
+        }
+
+        footer .social-links a:hover {
+          background: #00bfff;
+          color: #fff;
+          transform: scale(1.1);
+          box-shadow: 0 0 15px rgba(0, 191, 255, 0.4);
+        }
+
+                .logo-container {
+          position: absolute;
+          top:20px;/* distance below navbar */
+          right: 0px; /* distance from right edge */
+          z-index: 100;
+        }
+
+        .logo-container img {
+          width: 300px;
+          height: auto;
+          filter: drop-shadow(0 0 12px rgba(0, 191, 255, 0.6));
+          transition: transform 0.3s ease;
+        }
+
+        .logo-container img:hover {
+          transform: scale(1.1);
+        }
+
+
     </style>
 </head>
 <body>
@@ -376,7 +419,12 @@
             <li><a href="#contact">Contact</a></li>
         </ul>
     </nav>
-
+    
+    <!-- ✅ Logo in top-right corner (below nav) -->
+    <div class="logo-container">
+      <img src="logo.png" alt="HeyAssist Logo">
+    </div>
+    
     <!-- Your other sections remain unchanged -->
     <!-- ... all your sections here (Home, About, Services, Portfolio, Companies, etc.) ... -->
 
