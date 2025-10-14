@@ -376,17 +376,18 @@
           box-shadow: 0 0 15px rgba(0, 191, 255, 0.4);
         }
 
-                .logo-container {
-          position: absolute;
-          top:20px;/* distance below navbar */
-          right: 0px; /* distance from right edge */
-          z-index: 100;
+        .logo-container {
+            position: absolute;
+            top: 0px;
+            right: 0;
+            left: 750px;
+            z-index: 100;
+            transform: translateX(-10px); /* moves logo left by 10px */
         }
 
         .logo-container img {
-          width: 300px;
+          width: 420px;
           height: auto;
-          filter: drop-shadow(0 0 12px rgba(0, 191, 255, 0.6));
           transition: transform 0.3s ease;
         }
 
