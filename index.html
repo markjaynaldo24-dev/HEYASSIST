@@ -32,17 +32,17 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(10, 20, 40, 0.55); /* dark blue transparent overlay */
+            background: rgba(10, 20, 40, 0.55); 
             z-index: -1;
         }
 
-                /* Body padding-top to make space for fixed header */
+            
         body {
             font-family: 'Georgia', serif;
             color: #ffffff;
             line-height: 1.7;
             overflow-x: hidden;
-            padding-top: 76px; /* matches header height so content doesn't hide under nav */
+            padding-top: 76px; 
         }
 
          nav {
@@ -50,9 +50,9 @@
             top: 0;
             left: 0;
             width: 100%;
-            background: rgba(0, 40, 100, 0.85); /* dark blue transparent */
+            background: rgba(0, 40, 100, 0.85); 
             backdrop-filter: blur(12px);
-            padding: 0.9rem 0; /* vertical spacing in header */
+            padding: 0.9rem 0; 
             z-index: 1100;
             transition: all 0.25s ease;
             border-bottom: 1px solid rgba(0, 191, 255, 0.15);
@@ -64,7 +64,7 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            gap: 1.8rem; /* spacing between menu items */
+            gap: 1.8rem;
             margin: 0 auto;
             padding: 0 1rem;
             max-width: 1150px;
@@ -80,7 +80,7 @@
             text-transform: uppercase;
             letter-spacing: 0.85px;
             position: relative;
-            padding: 0.45rem 0; /* gives vertical clickable area */
+            padding: 0.45rem 0;
             transition: color 0.22s ease, transform 0.22s ease;
         }
 
@@ -103,7 +103,7 @@
 
         nav a:hover::after { width: 100%; }
 
-        /* Page Titles - Subtle Wave Animation */
+        /* Page Titles */
         .page-title {
             text-align: center;
             font-size: 4.5rem;
@@ -121,7 +121,7 @@
             50% { background-position: 100% 50%; }
         }
 
-        /* Sections - Clean Card Layout */
+        /* Sections */
         section {
             min-height: 100vh;
             padding: 6rem 3rem;
@@ -134,14 +134,14 @@
         }
 
         .content-card {
-            background: rgba(255, 255, 255, 0.05); /* Subtle glassmorphism effect */
+            background: rgba(255, 255, 255, 0.05); 
             backdrop-filter: blur(5px);
-            border: 1px solid rgba(0, 191, 255, 0.3); /* Cyan border */
+            border: 1px solid rgba(0, 191, 255, 0.3); 
             border-radius: 20px;
             padding: 4rem;
             margin: 2rem auto;
             max-width: 900px;
-            box-shadow: 0 8px 32px rgba(0, 191, 255, 0.1); /* Soft cyan glow */
+            box-shadow: 0 8px 32px rgba(0, 191, 255, 0.1); 
             transition: all 0.4s ease;
         }
 
@@ -151,7 +151,7 @@
             border-color: rgba(0, 191, 255, 0.6);
         }
 
-        /* Buttons - Cyan and White Gradient */
+        /* Buttons */
         .btn {
             display: inline-block;
             background: linear-gradient(45deg, #00BFFF, #ffffff);
@@ -175,7 +175,7 @@
             color: #ffffff;
         }
 
-        /* Lists and Subsections - Elegant Bullets */
+        /* Lists and Subsections */
         ul {
             list-style: none;
             padding: 0;
@@ -193,12 +193,12 @@
         }
 
         h2, h3 {
-            color: #00BFFF; /* Cyan headings */
+            color: #00BFFF; 
             margin-bottom: 0rem;
             font-weight: 400;
         }
 
-        /* Portfolio and Companies - Masonry Grid for Dynamic Feel */
+        /* Portfolio and Companies */
         .portfolio-grid, .companies-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -383,7 +383,7 @@
             right: 0;
             left: 820px;
             z-index: 100;
-            transform: translateX(-10px); /* moves logo left by 10px */
+            transform: translateX(-10px); 
         }
 
 
@@ -411,9 +411,9 @@
           gap: 3rem;
           align-items: start;
           max-width: 1500px;
-          margin: 0;               /* remove auto centering */
-          justify-content: flex-start; /* aligns the grid to the left by default */
-          padding-left: 300px;     /* move everything right */
+          margin: 0;               
+          justify-content: flex-start; 
+          padding-left: 300px;     
         }
 
         .about-text h2 {
@@ -543,7 +543,7 @@
 <body>
 
 
-    <!-- 🎬 Background Video -->
+    <!--  Background Video -->
     <video autoplay muted loop playsinline id="bg-video">
         <source src="https://markjaynaldo24-dev.github.io/HEYASSIST/LIVE BG1.mp4" type="video/mp4">
         Your browser does not support the video tag.
@@ -883,7 +883,7 @@
                 </div>
                 <div class="info-card">
                   <h4>Core Strengths</h4>
-                  <p>AutoCAD Drafting | Quality Control | Training | HR | Admin | Paper Writing</p>
+                  <p>AutoCAD Drafting & Permitting | Quality Control | Training | HR | Admin | Paper Writing</p>
                 </div>
               </div>
             </div>
